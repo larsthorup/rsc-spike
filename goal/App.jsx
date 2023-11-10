@@ -51,13 +51,14 @@ async function postUpvote(id, upvoted) {
 
 function ThemeSwitcher({ children }) {
   const [theme, setTheme] = useState("dark");
+  const color = theme === "dark" ? "#fff" : "#333";
   const backgroundColor = theme === "dark" ? "#333" : "#fff";
   return (
-    <body style={{ backgroundColor }}>
+    <body style={{ color, backgroundColor }}>
       <input
         type="checkbox"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        checked={value === "dark"}
+        checked={theme === "dark"}
       />
       <div>{children}</div>
     </body>
@@ -69,7 +70,7 @@ function UpvoteButton({ id, upvoted }) {
   const onClick = async () => {
     const isUpvoted = !upvoted;
     setUpvoted(isUpvoted);
-    await postUpvote(id, upvoted);
+    await postUpvote(id, isUpvoted);
   };
   return <input type="checkbox" onClick={onClick} checked={upvoted} />;
 }
