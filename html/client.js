@@ -1,3 +1,15 @@
+// global settings
+
+// View requests at https://public.requestbin.com/r/end47s2p1z8nj
+const baseUrl = 'https://end47s2p1z8nj.x.pipedream.net';
+
+// server action client functions
+
+async function upvote(id, upvoted) {
+  const body = JSON.stringify({ id, upvoted });
+  await fetch(`${baseUrl}/upvote`, { method: 'POST', body });
+}
+
 // client components
 
 class ThemeSwitcher {
@@ -36,10 +48,10 @@ class UpvoteButton {
     this.upvoted = upvoted;
     this.reconcile();
   }
-  onClick() {
+  async onClick() {
     const isUpvoted = !this.upvoted;
     this.setUpvoted(isUpvoted);
-    console.log(`TODO: await postUpvote(${this.props.id}, ${isUpvoted})`);
+    await upvote(this.props.id, isUpvoted);
   }
   reconcile() {
     this.inputElement.checked = this.upvoted;

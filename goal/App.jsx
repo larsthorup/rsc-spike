@@ -43,8 +43,8 @@ async function fetchNews() {
   ]);
 }
 
-async function postUpvote(id, upvoted) {
-  console.log(`${upvoted ? "Upvoting" : "Downvoting"} ${id}`);
+async function upvote(id, upvoted) {
+  console.log({id, upvoted});
 }
 
 // client components
@@ -70,7 +70,7 @@ function UpvoteButton({ id, upvoted }) {
   const onClick = async () => {
     const isUpvoted = !upvoted;
     setUpvoted(isUpvoted);
-    await postUpvote(id, isUpvoted);
+    await upvote(id, isUpvoted);
   };
   return <input type="checkbox" onClick={onClick} checked={upvoted} />;
 }

@@ -9,8 +9,8 @@ open html/index.html
 
 - [x] [Without React](html/index.html)
   - [x] Pass server props to client components
-  - [ ] Server actions
-- [ ] With React
+  - [x] Server actions
+- [ ] With plain React
 
 ## Goals:
 
@@ -48,11 +48,13 @@ open html/index.html
     - Parent: client component that has all event handlers and state
     - Child: server component with markup
   - The server simply also renders client components
-- [ ] How is a server action invocation serialized to a request and a response?
+- [x] How is a server action invocation serialized to a request and a response?
+  - Generate an async client function that calls fetch()
+  - Wrap the server action with an API end-point handler
 
 ## RSC
 
-- RSC bundler creates client component bundle
+- RSC bundler creates bundle with client components and server action client functions
 - RSC server run top server component (App) to build reactTree
   - (client components gets placeholders)
 - RSC server serialize reactTree to reactJSON
@@ -65,9 +67,11 @@ open html/index.html
 - Browser loads RSC client
 - RSC client derializes reactJSON into reactTree
 - RSC client hydrates DOM with reactTree
-- Browser imports client comoponents from bundle
+- Browser imports client components from bundle
 - RSC client instantiates the placeholder client components
-- server actions??
+- Browser imports server action client functions from bundle
+- server action client function sends request to the server
+- RSC server routes request to server action
 
 ## Inspiration
 
@@ -81,6 +85,3 @@ Blogs:
 
 - [Server Side Rendering without a framework by Paul Scanlon](https://thenewstack.io/how-to-build-a-server-side-react-app-using-vite-and-express/)
 
-Implementations:
-
-- 
