@@ -1,21 +1,25 @@
-import { createElement as h } from 'react';
+import { createElement as h } from "react";
 
 // TODO: should be async, might require renderToPipeableStream
 export default /* async */ function NewsList() {
   const news = /* await */ loadNews();
-  return (
-    h('ul', null, news.map((item) => (
-        h('li', {key: item.id}, [
-          // h(UpvoteButton, item),
-          h('b', null, item.title),
-          item.description,
-        ])
-      )))
+  return h(
+    "ul",
+    null,
+    news.map((item) =>
+      h(
+        "li",
+        { key: item.id },
+        // h(UpvoteButton, item),
+        h("b", null, item.title),
+        item.description
+      )
+    )
   );
 }
 
 /* async */ function loadNews() {
-  return /*Promise.resolve*/([
+  return /*Promise.resolve*/ [
     {
       id: "1",
       title: "Tracy Chapman wins country song of the year",
@@ -26,5 +30,5 @@ export default /* async */ function NewsList() {
       title: "Yoko Ono: her 20 greatest songs",
       description: "We appraise the best of a bold artist",
     },
-  ]);
+  ];
 }
