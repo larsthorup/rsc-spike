@@ -3,5 +3,5 @@ import Header from "./Header.js";
 import NewsList from "./NewsList.js";
 
 export default function App() {
-  return h("html", null, h("body", null, h(Header), h(NewsList)));
+  return h("html", null, h("head"), h("body", null, h(Header), h(NewsList)));
 }

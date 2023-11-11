@@ -19,6 +19,7 @@ With React:
   - [x] Pass server props to client components
   - [x] Server actions
 - [ ] With plain React
+  - [x] Async server components
 
 ## Goals:
 
@@ -60,7 +61,9 @@ With React:
 - [x] How is a server action invocation serialized to a request and a response?
   - Generate an async client function that calls fetch()
   - Wrap the server action with an API end-point handler
-- [ ] How to render an async server component?
+- [x] How to render an async server component?
+  - Use renderToPipeableStream
+  - Use react@18.3
 
 ## RSC
 
