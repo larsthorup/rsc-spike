@@ -22,6 +22,7 @@ With React:
 
 ## Goals:
 
+- [x] No dependencies but React
 - [x] Example app
 - [ ] One tree
 - [x] Initial fetch contains pre-rendered HTML
