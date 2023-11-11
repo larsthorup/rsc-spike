@@ -14,10 +14,10 @@ function Header() {
 }
 
 async function NewsList() {
-  const data = await fetchNews();
+  const news = await loadNews();
   return (
     <ul>
-      {data.map((item) => (
+      {news.map((item) => (
         <li key={item.id}>
           <UpvoteButton id={item.id} upvoted={item.upvoted} />
           <b>{item.title}</b>
@@ -28,7 +28,7 @@ async function NewsList() {
   );
 }
 
-async function fetchNews() {
+async function loadNews() {
   return Promise.resolve([
     {
       id: "1",

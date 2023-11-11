@@ -2,8 +2,16 @@
 
 Experiment in implementing React Server Components without using a framework
 
+Without React:
+
 ```bash
 open html/index.html
+```
+
+With React:
+
+```bash
+(cd react && npm start)
 ```
 
 
@@ -51,6 +59,7 @@ open html/index.html
 - [x] How is a server action invocation serialized to a request and a response?
   - Generate an async client function that calls fetch()
   - Wrap the server action with an API end-point handler
+- [ ] How to render an async server component?
 
 ## RSC
 
