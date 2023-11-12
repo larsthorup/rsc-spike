@@ -17,26 +17,27 @@ class ThemeSwitcher {
     // mount
     this.element = element;
     this.props = props;
-    this.theme = "dark";
+    this.isDarkTheme = true;
     this.inputElement = element.querySelector("input");
-    this.inputElement.onclick = () =>
-      this.setTheme(this.theme === "dark" ? "light" : "dark");
+    this.inputElement.onchange = (ev) => {
+      this.setIsDarkTheme(ev.target.checked);
+    };
     this.initializeTheme();
   }
-  setTheme(theme) {
-    this.theme = theme;
+  setIsDarkTheme(isDarkTheme) {
+    this.isDarkTheme = isDarkTheme;
     this.reconcile();
   }
   initializeTheme() {
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    this.setTheme(isDark ? "dark" : "light");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    this.setIsDarkTheme(prefersDark);
   }
   reconcile() {
-    const color = this.theme === "dark" ? "#fff" : "#333";
-    const backgroundColor = this.theme === "dark" ? "#333" : "#fff";
+    const color = this.isDarkTheme ? "#fff" : "#333";
+    const backgroundColor = this.isDarkTheme ? "#333" : "#fff";
     this.element.style.color = color;
     this.element.style.backgroundColor = backgroundColor;
-    this.inputElement.checked = this.theme === "dark";
+    this.inputElement.checked = this.isDarkTheme;
   }
 }
 

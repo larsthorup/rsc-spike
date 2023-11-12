@@ -54,20 +54,19 @@ async function upvote(id, upvoted) {
 
 function ThemeSwitcher({ children }) {
   "use client";
-  const [theme, setTheme] = useState("dark");
-  const color = theme === "dark" ? "#fff" : "#333";
-  const backgroundColor = theme === "dark" ? "#333" : "#fff";
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const color = isDarkTheme ? "#fff" : "#333";
+  const backgroundColor = isDarkTheme ? "#333" : "#fff";
   useEffect(function initializeTheme() {
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setTheme(isDark ? "dark" : "light");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDarkTheme(prefersDark);
   }, []);
+  const onChange = (ev) => {
+    setIsDarkTheme(ev.target.checked);
+  };
   return (
     <body style={{ color, backgroundColor }}>
-      <input
-        type="checkbox"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        checked={theme === "dark"}
-      />
+      <input type="checkbox" onChange={onChange} checked={isDarkTheme} />
       <div>{children}</div>
     </body>
   );

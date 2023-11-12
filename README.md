@@ -20,6 +20,10 @@ With React:
   - [x] Server actions
 - [ ] With plain React
   - [x] Async server components
+  - [x] Fetch "react" and "react-dom" UMD in client
+  - [ ] importmap to enable isomorphic `import from "react"`
+  - [ ] Hydration
+  - [ ] Client components
 
 ## Goals:
 
@@ -64,9 +68,17 @@ With React:
 - [x] How to render an async server component?
   - Use renderToPipeableStream
   - Use react@18.3
-- [ ] Can client components import server actions
+- [x] Can client components import server actions
   - Yes
   - So only server components ("use server" functions that return React.Element) is prevented from being called from "use client" functions
+- [ ] Why must the client bootstrap script import all server components to hydrate?
+  - Seems to load too much JS code to the client...?
+- [x] Why is there no react-dom/client UMD build?
+  - Loading react-dom gives "React.Scheduler is undefined"
+  - Also load the "scheduler" package!
+- [ ] Why is top-level "this" undefined when importing a UMD bundle from a module?
+  - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#global_context
+  - This is by design
 
 ## RSC
 
