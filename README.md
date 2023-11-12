@@ -1,6 +1,6 @@
 # rsc-spike
 
-Experiment in implementing React Server Components without using a framework
+Experiment in implementing React Server Components without using a framework, a bundler or any other dependencies
 
 Without React:
 
@@ -64,27 +64,31 @@ With React:
 - [x] How to render an async server component?
   - Use renderToPipeableStream
   - Use react@18.3
+- [ ] Can client components import server actions
+  - Yes
+  - So only server components ("use server" functions that return React.Element) is prevented from being called from "use client" functions
 
 ## RSC
 
-- RSC bundler creates bundle with client components and server action client functions
-- RSC server run top server component (App) to build reactTree
-  - (client components gets placeholders)
-- RSC server serialize reactTree to reactJSON
-- RSC server render reactTree to HTML
-- RSC server embeds reactJSON in HTML
-- RSC server embeds `<script>` link to RSC client in HTML
-- RSC server embeds `<script>` link to client component bundle in HTML
-- RSC server respond with HTML
-- Browser renders HTML
-- Browser loads RSC client
-- RSC client derializes reactJSON into reactTree
-- RSC client hydrates DOM with reactTree
-- Browser imports client components from bundle
-- RSC client instantiates the placeholder client components
-- Browser imports server action client functions from bundle
+- [ ] RSC bundler creates bundle with client components and server action client functions
+- [x] RSC server run top server component (App) to build reactTree
+- [ ] RSC server render client components gets placeholders?
+- [x] RSC server render reactTree to HTML
+- [ ] RSC server serialize reactTree to reactJSON
+- [ ] RSC server embeds reactJSON in HTML
+- [ ] RSC server embeds `<script>` link to RSC client in HTML
+- [ ] RSC server embeds `<script>` link to client component bundle in HTML
+- [x] RSC server respond with HTML
+- [x] Browser renders HTML
+- [ ] Browser loads RSC client
+- [ ] RSC client derializes reactJSON into reactTree
+- [ ] RSC client hydrates DOM with reactTree
+- [ ] Browser imports client components from bundle
+- [ ] RSC client instantiates the placeholder client components
+- [ ] Browser imports server action client functions from bundle
 - server action client function sends request to the server
-- RSC server routes request to server action
+- [ ] RSC server routes request to server action
+
 
 ## Inspiration
 

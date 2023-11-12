@@ -1,6 +1,5 @@
-// server components and server actions
-
 function App() {
+  "use server";
   return (
     <ThemeSwitcher>
       <Header />
@@ -10,10 +9,12 @@ function App() {
 }
 
 function Header() {
+  "use server";
   return <header>Latest news</header>;
 }
 
 async function NewsList() {
+  "use server";
   const news = await loadNews();
   return (
     <ul>
@@ -29,6 +30,7 @@ async function NewsList() {
 }
 
 async function loadNews() {
+  "use server";
   return Promise.resolve([
     {
       id: "1",
@@ -44,15 +46,21 @@ async function loadNews() {
 }
 
 async function upvote(id, upvoted) {
-  console.log({id, upvoted});
+  "use server";
+  console.log({ id, upvoted });
 }
 
-// client components
+////////////////////////
 
 function ThemeSwitcher({ children }) {
+  "use client";
   const [theme, setTheme] = useState("dark");
   const color = theme === "dark" ? "#fff" : "#333";
   const backgroundColor = theme === "dark" ? "#333" : "#fff";
+  useEffect(function initializeTheme() {
+    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setTheme(isDark ? "dark" : "light");
+  }, []);
   return (
     <body style={{ color, backgroundColor }}>
       <input
@@ -66,6 +74,7 @@ function ThemeSwitcher({ children }) {
 }
 
 function UpvoteButton({ id, upvoted }) {
+  "use client";
   const [upvoted, setUpvoted] = useState(upvoted);
   const onClick = async () => {
     const isUpvoted = !upvoted;

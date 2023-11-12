@@ -21,10 +21,15 @@ class ThemeSwitcher {
     this.inputElement = element.querySelector("input");
     this.inputElement.onclick = () =>
       this.setTheme(this.theme === "dark" ? "light" : "dark");
+    this.initializeTheme();
   }
   setTheme(theme) {
     this.theme = theme;
     this.reconcile();
+  }
+  initializeTheme() {
+    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    this.setTheme(isDark ? "dark" : "light");
   }
   reconcile() {
     const color = this.theme === "dark" ? "#fff" : "#333";
