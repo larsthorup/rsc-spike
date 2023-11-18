@@ -7,17 +7,16 @@ import express from "express";
 import { createElement as h } from "react";
 import { renderToPipeableStream } from "react-dom/server";
 
-import Page from "./use_server/Page.js";
-import { scheduler } from "node:timers/promises";
-
 const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// TODO: this is not actually ismorphic
+app.use("/isomorphic", express.static(path.join(__dirname, "isomorphic")));
 app.use("/use_client", express.static(path.join(__dirname, "use_client")));
 app.use("/use_server", express.static(path.join(__dirname, "use_server")));
-app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
+// app.use("/node_modules", express.static(path.join(__dirname, "node_modules")));
 
 // TODO: bundle and serve this for better cache performance
 const umdScripts = [
@@ -32,7 +31,10 @@ const bootstrapScriptContent = [
   umdScripts[1],
 ].join("\n");
 
-app.use("/", (req, res, next) => {
+app.use("/", async (req, res, next) => {
+  const { default: React } = await import("./node_modules/react/umd/react.development.js");
+  globalThis.React = React;
+  const { default: Page } = await import("./use_server/Page.js");
   const { pipe } = renderToPipeableStream(h(Page), {
     bootstrapScriptContent,
     bootstrapModules: ["/use_client/bootstrap.js"],

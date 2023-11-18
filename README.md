@@ -18,10 +18,13 @@ With React:
 - [x] [Without React](html/index.html)
   - [x] Pass server props to client components
   - [x] Server actions
-- [ ] With plain React
+- [ ] With client side React
+  - [x] hydrateRoot
+  - [ ] generate reactJSON
+- [ ] With server side React
   - [x] Async server components
   - [x] Fetch "react" and "react-dom" UMD in client
-  - [ ] importmap to enable isomorphic `import from "react"`
+  - [ ] Isomorphic way to `import from "react"`
   - [ ] Hydration
   - [ ] Client components
 
@@ -75,10 +78,15 @@ With React:
   - Seems to load too much JS code to the client...?
 - [x] Why is there no react-dom/client UMD build?
   - Loading react-dom gives "React.Scheduler is undefined"
-  - Also load the "scheduler" package!
-- [ ] Why is top-level "this" undefined when importing a UMD bundle from a module?
+  - https://github.com/facebook/react/issues/27675
+  - Fixed by reverting to v18.3.0-canary-d6dcad6a8-20230914
+- [x] Why is top-level "this" undefined when importing a UMD bundle from a module?
   - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this#global_context
   - This is by design
+- [ ] How to make `import from "react"` isomorphic?
+  - For hydration client side we import Page which imports "react"
+  - No way to inject `<script type="importmap">` into the react stream 
+  - Client components must be isomorphic as the run on both client and server
 
 ## RSC
 
@@ -113,4 +121,6 @@ Videos:
 Blogs:
 
 - [Server Side Rendering without a framework by Paul Scanlon](https://thenewstack.io/how-to-build-a-server-side-react-app-using-vite-and-express/)
-
+- [React Server Components, without a framework? by Tim Pillard](https://timtech.blog/posts/react-server-components-rsc-no-framework/)
+  - Built on top of "react-server-dom-webpack"
+- [ RSC From Scratch. Part 1: Server Components by Dan Abramov](https://github.com/reactwg/server-components/discussions/5)

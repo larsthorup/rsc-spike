@@ -1,4 +1,5 @@
-import { createElement as h, useState, useEffect } from "react";
+// import { createElement as h, useState, useEffect } from "react";
+import { createElement as h, useState, useEffect } from "../isomorphic/react_esm_from_umd.js"
 
 export default function ThemeSwitcher({ children }) {
   const [isDarkTheme, setIsDarkTheme] = useState(true);
