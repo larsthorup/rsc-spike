@@ -27,7 +27,7 @@ With Server Side React:
 - [ ] With client side React
   - [x] hydrateRoot
   - [x] include reactJSON in HTML
-  - [ ] generate reactJSON
+  - [x] generate reactJSON from App.js
   - [ ] hydrateRoot(document)
 - [ ] With plain React
   - [x] Async server components
