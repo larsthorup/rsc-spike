@@ -29,11 +29,13 @@ With Server Side React:
   - [x] include reactJSON in HTML
   - [x] generate reactJSON from App.js
   - [x] components
+  - [ ] render HTML from clientJSON
   - [ ] renderStyle
   - [ ] input checked
   - [ ] render functions as props, like onChange 
   - [ ] hydrateRoot(document)
   - [ ] server action
+  - [ ] clean code
 - [ ] With plain React
   - [x] Async server components
   - [x] Fetch "react" and "react-dom" UMD in client

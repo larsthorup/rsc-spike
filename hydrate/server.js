@@ -109,10 +109,10 @@ createServer(async (req, res) => {
     if (req.url === "/") {
       const app = App();
       // console.log('app', JSON.stringify(app, null, 2));
-      const appHtml = await renderJSXToHTML(app);
-      // console.log('appHtml', appHtml);
       const appJson = await renderJSXToClientJSX(app);
       // console.log('appJson', JSON.stringify(appJson, stringifyJSX, 2));
+      const appHtml = await renderJSXToHTML(appJson);
+      // console.log('appHtml', appHtml);
       const appJsonString = JSON.stringify(appJson, stringifyJSX);
       const appJsonHtmlEncoded = appJsonString.replace(/</g, "\\u003c"); // Note: for embedding in <script> tag
       const html = `
