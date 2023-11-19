@@ -2,7 +2,7 @@ import fs from "fs";
 import { createServer } from "http";
 import escapeHtml from "escape-html";
 
-import App from "./App.js";
+import App from "./App.server.js";
 
 async function renderJSXToHTML(jsx) {
   if (typeof jsx === "string" || typeof jsx === "number") {
@@ -108,12 +108,11 @@ createServer(async (req, res) => {
     console.log(req.url);
     if (req.url === "/") {
       const app = App();
-      console.log(JSON.stringify(app, null, 2));
+      // console.log('app', JSON.stringify(app, null, 2));
       const appHtml = await renderJSXToHTML(app);
-      console.log(appHtml);
-      // const appJSON =
-      //   '{"$$typeof": "$RE","type":"div","key":null,"ref":null,"props":{"children":"Hello World!"}}'; // TODO
+      // console.log('appHtml', appHtml);
       const appJson = await renderJSXToClientJSX(app);
+      // console.log('appJson', JSON.stringify(appJson, stringifyJSX, 2));
       const appJsonString = JSON.stringify(appJson, stringifyJSX);
       const appJsonHtmlEncoded = appJsonString.replace(/</g, "\\u003c"); // Note: for embedding in <script> tag
       const html = `

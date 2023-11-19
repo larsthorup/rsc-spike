@@ -28,7 +28,12 @@ With Server Side React:
   - [x] hydrateRoot
   - [x] include reactJSON in HTML
   - [x] generate reactJSON from App.js
+  - [x] components
+  - [ ] renderStyle
+  - [ ] input checked
+  - [ ] render functions as props, like onChange 
   - [ ] hydrateRoot(document)
+  - [ ] server action
 - [ ] With plain React
   - [x] Async server components
   - [x] Fetch "react" and "react-dom" UMD in client
