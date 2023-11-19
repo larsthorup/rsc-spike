@@ -33,8 +33,8 @@ With Server Side React:
   - [x] renderStyle
   - [x] skip server side rendering of function props, like onChange 
   - [ ] hydrateRoot(document)
+  - [ ] hydrate client components
   - [ ] server action
-  - [ ] clean code
 - [ ] With plain React
   - [x] Async server components
   - [x] Fetch "react" and "react-dom" UMD in client
