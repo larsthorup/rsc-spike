@@ -1,5 +1,3 @@
-import { ThemeSwitcher, UpvoteButton } from './App.client.js';
-
 const { React, ReactDOM } = globalThis;
 const { createElement: h } = React;
 const { hydrateRoot, hydrate } = ReactDOM;
@@ -17,12 +15,15 @@ function reviveJSX(key, value) {
   }
 }
 
+async function hydrateComponent(moduleName, exportName, props, children, selector) {
+  const module = await import(moduleName);
+  const Component = module[exportName];
+  hydrate(h(Component, props, children), document.querySelector(selector));
+}
+
 const clientJSX = JSON.parse(globalThis.__INITIAL_CLIENT_JSX_STRING__, reviveJSX);
-// console.log(clientJSX);
-// TODO: get props from clientJSX
-// TODO: async dynamic import driven from clientJSX
 // TODO: drive this from clientJSX
-hydrate(h(ThemeSwitcher, {}, clientJSX.props.children[1].props.children), document.querySelector('body'));
-hydrate(h(UpvoteButton, {id: '1', upvoted: false}), document.querySelector('body > div > div > ul > li:nth-child(1)'));
-hydrate(h(UpvoteButton, {id: '2', upvoted: false}), document.querySelector('body > div > div > ul > li:nth-child(2)'));
+await hydrateComponent('./App.client.js', 'ThemeSwitcher', {}, clientJSX.props.children[1].props.children, 'body');
+await hydrateComponent('./App.client.js', 'UpvoteButton',  {id: '1', upvoted: false}, [], 'body > div > div > ul > li:nth-child(1)');
+await hydrateComponent('./App.client.js', 'UpvoteButton',  {id: '2', upvoted: false}, [], 'body > div > div > ul > li:nth-child(2)');
 console.log('hydration completed')
