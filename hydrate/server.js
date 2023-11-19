@@ -25,10 +25,7 @@ async function renderJSXToHTML(jsx) {
         let html = "<" + jsx.type;
         for (const propName in jsx.props) {
           if (jsx.props.hasOwnProperty(propName) && propName !== "children") {
-            html += " ";
-            html += propName;
-            html += "=";
-            html += escapeHtml(jsx.props[propName]);
+            html += ` ${propName}="${renderProptoHtml(jsx, propName)}"`;
           }
         }
         html += ">";
@@ -45,6 +42,27 @@ async function renderJSXToHTML(jsx) {
       } else throw new Error("Not implemented.");
     }
   } else throw new Error("Not implemented.");
+}
+
+function renderProptoHtml(jsx, propName) {
+  const prop = jsx.props[propName];
+  if (propName === "style" && typeof prop === "object") {
+    const css = Object.entries(prop)
+      .map(([prop, value]) => `${cssPropName(prop)}:${value}`)
+      .join(";");
+    return escapeHtml(css);
+  } else {
+    return escapeHtml(prop);
+  }
+}
+
+function cssPropName(prop) {
+  switch (prop) {
+    case "backgroundColor":
+      return "background-color";
+    default:
+      return prop;
+  }
 }
 
 async function renderJSXToClientJSX(jsx) {
@@ -110,7 +128,7 @@ createServer(async (req, res) => {
       const app = App();
       // console.log('app', JSON.stringify(app, null, 2));
       const appJson = await renderJSXToClientJSX(app);
-      // console.log('appJson', JSON.stringify(appJson, stringifyJSX, 2));
+      console.log("appJson", JSON.stringify(appJson, stringifyJSX, 2));
       const appHtml = await renderJSXToHTML(appJson);
       // console.log('appHtml', appHtml);
       const appJsonString = JSON.stringify(appJson, stringifyJSX);

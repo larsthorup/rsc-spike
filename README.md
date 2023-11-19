@@ -29,8 +29,8 @@ With Server Side React:
   - [x] include reactJSON in HTML
   - [x] generate reactJSON from App.js
   - [x] components
-  - [ ] render HTML from clientJSON
-  - [ ] renderStyle
+  - [x] render HTML from clientJSON
+  - [x] renderStyle
   - [ ] input checked
   - [ ] render functions as props, like onChange 
   - [ ] hydrateRoot(document)

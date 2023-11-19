@@ -15,7 +15,7 @@ export function ThemeSwitcher({ children }) {
   };
   return h(
     "div",
-    {}, // { style: { color, backgroundColor } },
+    { style: { color, backgroundColor } },
     h(Checkbox, {
       // onChange,
       checked: isDarkTheme,
