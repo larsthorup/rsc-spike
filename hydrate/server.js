@@ -97,12 +97,15 @@ async function renderJSXToClientJSX(jsx) {
     } else {
       // This is an arbitrary object (for example, props, or something inside of them).
       // Go over every value inside, and process it too in case there's some JSX in it.
+      // Skip function props - they will have to be hydrated client-side
       return Object.fromEntries(
         await Promise.all(
-          Object.entries(jsx).map(async ([propName, value]) => [
-            propName,
-            await renderJSXToClientJSX(value),
-          ])
+          Object.entries(jsx)
+            .filter(([propName, value]) => typeof value !== "function")
+            .map(async ([propName, value]) => [
+              propName,
+              await renderJSXToClientJSX(value),
+            ])
         )
       );
     }

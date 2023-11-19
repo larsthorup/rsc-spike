@@ -17,7 +17,7 @@ export function ThemeSwitcher({ children }) {
     "div",
     { style: { color, backgroundColor } },
     h(Checkbox, {
-      // onChange,
+      onChange,
       checked: isDarkTheme,
     }),
     h("div", {}, children)
@@ -32,7 +32,7 @@ export function UpvoteButton({ id, upvoted }) {
     // await upvote(id, isUpvoted);
   };
   return h(Checkbox, {
-    // onChanged,
+    onChanged,
     checked: !!isUpvoted,
   });
 }
@@ -40,6 +40,6 @@ export function UpvoteButton({ id, upvoted }) {
 export function Checkbox({ checked, onChange }) {
   const onClick = () => onChange && onChange(!checked);
   return h("span", {
-    // onClick,
+    onClick,
   }, checked ? "\u2611" : "\u2610");
 }

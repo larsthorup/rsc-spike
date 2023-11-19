@@ -31,8 +31,7 @@ With Server Side React:
   - [x] components
   - [x] render HTML from clientJSON
   - [x] renderStyle
-  - [ ] input checked
-  - [ ] render functions as props, like onChange 
+  - [x] skip server side rendering of function props, like onChange 
   - [ ] hydrateRoot(document)
   - [ ] server action
   - [ ] clean code
