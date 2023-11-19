@@ -32,8 +32,9 @@ With Server Side React:
   - [x] render HTML from clientJSON
   - [x] renderStyle
   - [x] skip server side rendering of function props, like onChange 
-  - [ ] hydrateRoot(document)
   - [ ] hydrate client components
+  - [ ] hydrateRoot(document)
+  - [ ] navigation (which is where hydrateRoot is leveraged)
   - [ ] server action
 - [ ] With plain React
   - [x] Async server components

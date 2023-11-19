@@ -26,13 +26,14 @@ export function ThemeSwitcher({ children }) {
 
 export function UpvoteButton({ id, upvoted }) {
   const [isUpvoted, setIsUpvoted] = useState(upvoted);
-  const onChanged = async (checked) => {
+  const onChange = async (checked) => {
     const isUpvoted = checked;
     setIsUpvoted(isUpvoted);
+    // TODO: invoke server action
     // await upvote(id, isUpvoted);
   };
   return h(Checkbox, {
-    onChanged,
+    onChange,
     checked: !!isUpvoted,
   });
 }

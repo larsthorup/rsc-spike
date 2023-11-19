@@ -46,10 +46,13 @@ createServer(async (req, res) => {
 <script>
   globalThis.__INITIAL_CLIENT_JSX_STRING__ = '${appJsonHtmlEncoded}';
 </script>
-<script src="client.js"></script>
+<script src="client.js" type="module"></script>
 </html>`;
       res.setHeader("Content-Type", "text/html");
       res.end(html);
+    } else if (req.url === "/react.js") {
+      res.setHeader("Content-Type", "application/javascript");
+      res.end(fs.readFileSync('./react.client.js', "utf8"));
     } else if (req.url.endsWith(".js")) {
       const path = req.url.slice(1);
       res.setHeader("Content-Type", "application/javascript");
