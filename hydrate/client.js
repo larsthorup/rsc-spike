@@ -16,3 +16,4 @@ function reviveJSX(key, value) {
 
 const clientJSX = JSON.parse(globalThis.__INITIAL_CLIENT_JSX_STRING__, reviveJSX);
 hydrateRoot(document.body, clientJSX);
+console.log('hydration completed')

@@ -8,7 +8,13 @@ Without React:
 open html/index.html
 ```
 
-With React:
+With Client Side React:
+
+```bash
+(cd hydrate && npm start)
+```
+
+With Server Side React:
 
 ```bash
 (cd react && npm start)
@@ -18,10 +24,15 @@ With React:
 - [x] [Without React](html/index.html)
   - [x] Pass server props to client components
   - [x] Server actions
+- [ ] With client side React
+  - [x] hydrateRoot
+  - [x] include reactJSON in HTML
+  - [ ] generate reactJSON
+  - [ ] hydrateRoot(document)
 - [ ] With plain React
   - [x] Async server components
   - [x] Fetch "react" and "react-dom" UMD in client
-  - [ ] importmap to enable isomorphic `import from "react"`
+  - [ ] importmap to enable isomorphic `import from "react"` (branch: "isomorphic-react-wip")
   - [ ] Hydration
   - [ ] Client components
 
